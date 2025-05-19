@@ -19,7 +19,7 @@ funded_plans_data as
 )
 select owner_id, fsd.name, 
 count(case when plan_type = 'Savings' then 1 end) as savings_count,
-count(case when plan_type = 'Investment' then 1 end) as investment_count, sum(total_deposits / 100) as total_deposits
+count(case when plan_type = 'Investment' then 1 end) as investment_count, round(sum(total_deposits / 100),2) as total_deposits
 from funded_plans_data as fsd
 group by owner_id, fsd.name
 having savings_count >= 1 and investment_count >= 1
